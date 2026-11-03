@@ -19,7 +19,7 @@
 </head>
 <body class="bg-white font-sans text-[#292821] antialiased min-h-screen relative">
         <!-- React Navbar container -->
-        <div id="navbar-root" class="w-full" data-locale="{{ app()->getLocale() }}"></div>
+        <div id="navbar-root" class="w-full" data-locale="{{ app()->getLocale() }}" data-active="home" data-tone="light"></div>
 
         <!-- React Hero container -->
         <div id="hero-root" class="w-full"></div>

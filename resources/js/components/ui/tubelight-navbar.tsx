@@ -19,6 +19,7 @@ interface NavBarProps {
   languages?: string[]
   defaultLanguage?: string
   defaultActive?: string
+  tone?: "light" | "dark"
   onLanguageChange?: (code: string) => void
   className?: string
 }
@@ -58,9 +59,11 @@ export function NavBar({
   languages,
   defaultLanguage,
   defaultActive,
+  tone = "light",
   onLanguageChange,
   className,
 }: NavBarProps) {
+  const onDark = tone === "dark"
   const [activeTab, setActiveTab] = useState(defaultActive ?? items[0].name)
   const [hidden, setHidden] = useState(false)
   const [lang, setLang] = useState(defaultLanguage ?? languages?.[0] ?? "EN")
@@ -140,7 +143,10 @@ export function NavBar({
                 onClick={() => setLangOpen((o) => !o)}
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
-                className="flex cursor-pointer items-center gap-1.5 whitespace-nowrap text-sm font-semibold text-white/85 transition-colors hover:text-white"
+                className={cn(
+                  "flex cursor-pointer items-center gap-1.5 whitespace-nowrap text-sm font-semibold transition-colors",
+                  onDark ? "text-[#292821]/80 hover:text-[#292821]" : "text-white/85 hover:text-white",
+                )}
               >
                 {FLAGS[lang]}
                 <span>{lang}</span>
@@ -154,7 +160,12 @@ export function NavBar({
               {langOpen && (
                 <ul
                   role="listbox"
-                  className="absolute right-0 top-full z-50 mt-2 min-w-[96px] overflow-hidden rounded-xl border border-white/25 bg-[#3d3227]/95 py-1 text-sm font-semibold text-white shadow-xl backdrop-blur-lg"
+                  className={cn(
+                    "absolute right-0 top-full z-50 mt-2 min-w-[96px] overflow-hidden rounded-xl border py-1 text-sm font-semibold shadow-xl backdrop-blur-lg",
+                    onDark
+                      ? "border-[#e7e4dc] bg-white/95 text-[#292821]"
+                      : "border-white/25 bg-[#3d3227]/95 text-white",
+                  )}
                 >
                   {languages.map((code) => (
                     <li key={code}>
@@ -167,8 +178,15 @@ export function NavBar({
                           setLangOpen(false)
                         }}
                         className={cn(
-                          "flex w-full cursor-pointer items-center justify-between px-3 py-1.5 transition-colors hover:bg-white/15",
-                          code === lang ? "text-white" : "text-white/70",
+                          "flex w-full cursor-pointer items-center justify-between px-3 py-1.5 transition-colors",
+                          onDark ? "hover:bg-[#292821]/8" : "hover:bg-white/15",
+                          code === lang
+                            ? onDark
+                              ? "text-[#292821]"
+                              : "text-white"
+                            : onDark
+                              ? "text-[#79766e]"
+                              : "text-white/70",
                         )}
                       >
                         <span className="flex items-center gap-2">
@@ -183,7 +201,14 @@ export function NavBar({
               )}
             </div>
           )}
-          <div className="flex items-center gap-0.5 sm:gap-3 bg-[#a38355]/40 border border-white/30 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg text-white">
+          <div
+            className={cn(
+              "flex items-center gap-0.5 sm:gap-3 py-1 px-1 rounded-full shadow-lg backdrop-blur-lg border",
+              onDark
+                ? "bg-white/75 border-[#e7e4dc] text-[#292821]"
+                : "bg-[#a38355]/40 border-white/30 text-white",
+            )}
+          >
           {items.map((item) => {
             const Icon = item.icon
             const isActive = activeTab === item.name
@@ -195,8 +220,13 @@ export function NavBar({
                 onClick={() => setActiveTab(item.name)}
                 className={cn(
                   "relative cursor-pointer text-sm font-semibold px-2.5 sm:px-6 py-2 rounded-full transition-colors",
-                  "text-white/90 hover:text-white",
-                  isActive && "bg-white/20 text-white shadow-sm",
+                  onDark
+                    ? "text-[#292821]/85 hover:text-[#292821]"
+                    : "text-white/90 hover:text-white",
+                  isActive &&
+                    (onDark
+                      ? "bg-[#292821]/10 text-[#292821] shadow-sm"
+                      : "bg-white/20 text-white shadow-sm"),
                 )}
               >
                 <span className="hidden md:inline">{item.name}</span>
@@ -227,7 +257,12 @@ export function NavBar({
         </div>
 
           {actions && actions.length > 0 && (
-            <div className="absolute left-full top-1/2 ml-2 flex -translate-y-1/2 items-center gap-3 whitespace-nowrap text-white sm:ml-4 sm:gap-4">
+            <div
+              className={cn(
+                "absolute left-full top-1/2 ml-2 flex -translate-y-1/2 items-center gap-3 whitespace-nowrap sm:ml-4 sm:gap-4",
+                onDark ? "text-[#292821]" : "text-white",
+              )}
+            >
               {actions.map((action) => {
                 const Icon = action.icon
                 return (
@@ -236,7 +271,9 @@ export function NavBar({
                     href={action.url}
                     className={cn(
                       "relative flex items-center gap-2 cursor-pointer text-sm font-semibold transition-colors",
-                      "text-white/85 hover:text-white",
+                      onDark
+                        ? "text-[#292821]/85 hover:text-[#292821]"
+                        : "text-white/85 hover:text-white",
                     )}
                   >
                     {Icon && <Icon size={18} strokeWidth={2.5} />}
@@ -244,7 +281,12 @@ export function NavBar({
                       <span className={Icon ? "hidden sm:inline" : "inline"}>{action.name}</span>
                     )}
                     {typeof action.badge === "number" && action.badge > 0 && (
-                      <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-white px-1 text-[10px] font-bold text-[#292821]">
+                      <span
+                        className={cn(
+                          "flex h-[18px] min-w-[18px] items-center justify-center rounded-full px-1 text-[10px] font-bold",
+                          onDark ? "bg-[#292821] text-white" : "bg-white text-[#292821]",
+                        )}
+                      >
                         {action.badge}
                       </span>
                     )}
