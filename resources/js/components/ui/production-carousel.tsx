@@ -1,10 +1,11 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight, Heart, Star } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
 export interface TimberStockItem {
   id: string
@@ -109,6 +110,8 @@ const TimberCard = ({ item }: { item: TimberStockItem }) => {
           alt={item.title}
           className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
           src={item.image}
+          loading="lazy"
+          decoding="async"
         />
         <Button
           type="button"
@@ -185,6 +188,25 @@ export default function ProductionCarousel({
   viewAllHref?: string
 }) {
   const scrollContainer = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  useEffect(() => {
+    const el = scrollContainer.current
+    if (!el) return
+
+    const update = () => {
+      setCanScrollLeft(el.scrollLeft > 4)
+      setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+    }
+    update()
+    el.addEventListener("scroll", update, { passive: true })
+    window.addEventListener("resize", update)
+    return () => {
+      el.removeEventListener("scroll", update)
+      window.removeEventListener("resize", update)
+    }
+  }, [])
 
   const handleScrollLeft = () => {
     if (scrollContainer.current) {
@@ -203,7 +225,7 @@ export default function ProductionCarousel({
 
   return (
     <div className="w-full">
-      <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="mx-auto mb-6 flex w-full max-w-[1280px] flex-col md:flex-row md:items-end justify-between gap-4 px-12">
         <div className="flex flex-col gap-2 items-start">
           <span className="font-semibold leading-normal text-[#a38355] text-[12px] tracking-wider uppercase">
             {categoryTag}
@@ -213,58 +235,70 @@ export default function ProductionCarousel({
           </h2>
         </div>
 
-        <div className="flex items-center gap-2 self-start md:self-auto">
-          <Button
-            type="button"
-            className="h-9 w-9 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs"
-            onClick={handleScrollLeft}
-            size="icon"
-            variant="outline"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            <span className="sr-only">Scroll left</span>
-          </Button>
-          <Button
-            type="button"
-            className="h-9 w-9 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs"
-            onClick={handleScrollRight}
-            size="icon"
-            variant="outline"
-          >
-            <ChevronRight className="h-4 w-4" />
-            <span className="sr-only">Scroll right</span>
-          </Button>
-          <a
-            className="border border-[#e7e4dc] bg-white hover:bg-neutral-100 flex gap-2 h-9 items-center justify-center px-4 rounded-full text-[#292821] font-medium text-xs transition-colors ml-1"
-            href={viewAllHref}
-          >
-            <span>View all stock</span>
-            <ChevronRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
+        <a
+          className="self-start md:self-auto border border-[#e7e4dc] bg-white hover:bg-neutral-100 flex gap-2 h-9 items-center justify-center px-4 rounded-full text-[#292821] font-medium text-xs transition-colors"
+          href={viewAllHref}
+        >
+          <span>View all stock</span>
+          <ChevronRight className="h-3.5 w-3.5" />
+        </a>
       </div>
 
-      <div
-        className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pt-1"
-        ref={scrollContainer}
-        style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
-        {items.map((item) => (
-          <div
-            className="w-[260px] flex-none snap-start md:w-[280px]"
-            key={item.id}
-          >
-            <a
-              className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2"
-              href={`#stock-${item.id}`}
-            >
-              <TimberCard item={item} />
-            </a>
+      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-3">
+        <Button
+          type="button"
+          className={cn(
+            "h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
+            !canScrollLeft && "invisible pointer-events-none",
+          )}
+          tabIndex={canScrollLeft ? 0 : -1}
+          onClick={handleScrollLeft}
+          size="icon"
+          variant="outline"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          <span className="sr-only">Scroll left</span>
+        </Button>
+
+        <div
+          className="flex min-w-0 flex-1 snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pt-1"
+          ref={scrollContainer}
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          <div className="mx-auto flex flex-none gap-5">
+            {items.map((item) => (
+              <div
+                className="w-[260px] flex-none snap-start md:w-[280px]"
+                key={item.id}
+              >
+                <a
+                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2"
+                  href={`#stock-${item.id}`}
+                >
+                  <TimberCard item={item} />
+                </a>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <Button
+          type="button"
+          className={cn(
+            "h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
+            !canScrollRight && "invisible pointer-events-none",
+          )}
+          tabIndex={canScrollRight ? 0 : -1}
+          onClick={handleScrollRight}
+          size="icon"
+          variant="outline"
+        >
+          <ChevronRight className="h-4 w-4" />
+          <span className="sr-only">Scroll right</span>
+        </Button>
       </div>
     </div>
   )

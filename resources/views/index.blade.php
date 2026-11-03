@@ -27,7 +27,7 @@
             <div class="bg-[#f7f5f0] flex gap-[58px] items-start px-[100px] py-[38px] w-full">
                 <div class="flex flex-1 gap-[15px] items-start">
                     <div class="relative size-[28px] shrink-0">
-                        <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/ruler.svg') }}" />
+                        <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/ruler.svg') }}" loading="lazy" decoding="async" />
                     </div>
                     <div class="flex flex-col gap-[6px] items-start leading-[1.5] flex-1">
                         <span class="font-medium text-[#292821] text-[15px]">Standardized specifications</span>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="flex flex-1 gap-[15px] items-start">
                     <div class="relative size-[28px] shrink-0">
-                        <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/shield-check.svg') }}" />
+                        <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/shield-check.svg') }}" loading="lazy" decoding="async" />
                     </div>
                     <div class="flex flex-col gap-[6px] items-start leading-[1.5] flex-1">
                         <span class="font-medium text-[#292821] text-[15px]">Legal timber sourcing</span>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="flex flex-1 gap-[15px] items-start">
                     <div class="relative size-[28px] shrink-0">
-                        <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/truck.svg') }}" />
+                        <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/truck.svg') }}" loading="lazy" decoding="async" />
                     </div>
                     <div class="flex flex-col gap-[6px] items-start leading-[1.5] flex-1">
                         <span class="font-medium text-[#292821] text-[15px]">Connected shipping</span>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Categories and stock -->
-        <div class="flex flex-col gap-[120px] items-start px-[72px] py-[80px] w-full bg-white">
+        <div class="lazy-section flex flex-col gap-[180px] items-start px-[72px] py-[80px] w-full bg-white">
             
             <!-- Categories / Know Your Material -->
             <div class="flex flex-col gap-[16px] items-start w-full bg-white">
@@ -75,12 +75,12 @@
         </div>
 
         <!-- Sourcing, process and logistics -->
-        <div class="flex flex-col items-start w-full">
+        <div class="lazy-section flex flex-col items-start w-full">
             
             <!-- Quality story -->
             <div class="bg-[#f7f5f0] flex gap-[72px] items-center p-[72px] w-full">
                 <div class="h-[470px] relative rounded-[4px] w-[580px] shrink-0 overflow-hidden">
-                    <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/story-inspection.png') }}" />
+                    <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/story-inspection.png') }}" loading="lazy" decoding="async" />
                 </div>
                 <div class="flex flex-1 flex-col gap-[24px] items-start">
                     <div class="flex flex-col gap-[10px] items-start w-full">
@@ -171,13 +171,13 @@
                     </a>
                 </div>
                 <div class="flex-1 h-[380px] relative rounded-[4px] overflow-hidden">
-                    <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/logistics-warehouse.png') }}" />
+                    <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/logistics-warehouse.png') }}" loading="lazy" decoding="async" />
                 </div>
             </div>
         </div>
 
         <!-- Partnership and closing -->
-        <div class="flex flex-col items-start w-full bg-white">
+        <div class="lazy-section flex flex-col items-start w-full bg-white">
             
             <!-- Custom request -->
             <div class="flex gap-[80px] items-start px-[100px] py-[72px] w-full">
