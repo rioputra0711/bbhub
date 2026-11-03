@@ -19,26 +19,15 @@ interface NavBarProps {
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name)
   const [isMobile, setIsMobile] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
     }
 
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 200)
-    }
-
     handleResize()
-    handleScroll()
-
     window.addEventListener("resize", handleResize)
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener("resize", handleResize)
-      window.removeEventListener("scroll", handleScroll)
-    }
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   return (
@@ -48,14 +37,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div
-        className={cn(
-          "flex items-center gap-2 border py-1.5 px-2 rounded-full shadow-lg transition-all duration-300 backdrop-blur-xl",
-          scrolled
-            ? "bg-[#1f1d19]/85 border-white/20 shadow-2xl text-white"
-            : "bg-black/35 border-white/20 text-white shadow-md",
-        )}
-      >
+      <div className="flex items-center gap-3 bg-white/20 dark:bg-black/20 border border-white/20 backdrop-blur-md py-1 px-1 rounded-full shadow-lg text-white">
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name

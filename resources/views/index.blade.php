@@ -56,10 +56,10 @@
         </div>
 
         <!-- Categories and stock -->
-        <div class="flex flex-col gap-[72px] items-start px-[72px] py-[80px] w-full bg-white">
+        <div class="flex flex-col gap-[120px] items-start px-[72px] py-[80px] w-full bg-white">
             
             <!-- Categories / Know Your Material -->
-            <div class="flex flex-col gap-[32px] items-start w-full bg-white">
+            <div class="flex flex-col gap-[16px] items-start w-full bg-white">
                 <div class="flex flex-col gap-[10px] items-start w-full">
                     <span class="font-semibold leading-[1.5] text-[#a38355] text-[12px] tracking-wider uppercase">KNOW YOUR MATERIAL</span>
                     <h2 class="font-medium leading-[1.2] text-[#292821] text-[36px] tracking-[-1.1px]">One need. Many possibilities.</h2>

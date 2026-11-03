@@ -206,7 +206,9 @@ export default function TimberScrollHero({
 
       // 4. Hint fade
       if (hintRef.current) {
-        hintRef.current.style.opacity = hasStartedScrolling ? "0" : "1"
+        const hintOpacity = currentProgress > 0.03 ? "0" : "1"
+        hintRef.current.style.opacity = hintOpacity
+        hintRef.current.style.display = currentProgress > 0.15 ? "none" : "flex"
       }
 
       // 5. Brand mark reveal
