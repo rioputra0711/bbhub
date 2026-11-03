@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { SquareArrowOutUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type CardStackItem = {
@@ -336,7 +335,7 @@ export function CardStack<T extends CardStackItem>({
 
       {/* Dots navigation centered at bottom */}
       {showDots ? (
-        <div className="mt-6 flex items-center justify-center gap-3">
+        <div className="mt-24 flex items-center justify-center gap-3">
           <div className="flex items-center gap-2">
             {items.map((it, idx) => {
               const on = idx === active;
@@ -355,15 +354,6 @@ export function CardStack<T extends CardStackItem>({
               );
             })}
           </div>
-          {activeItem.href ? (
-            <a
-              href={activeItem.href}
-              className="text-[#79766e] hover:text-[#292821] transition ml-2 p-1"
-              aria-label="Open link"
-            >
-              <SquareArrowOutUpRight className="h-4 w-4" />
-            </a>
-          ) : null}
         </div>
       ) : null}
     </div>
@@ -373,7 +363,7 @@ export function CardStack<T extends CardStackItem>({
 function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
   return (
     <div
-      className="relative h-full w-full bg-[#FAF9F5] overflow-hidden border-t border-white/80"
+      className="relative h-full w-full bg-[#FAFAFA] overflow-hidden border-t border-white/80"
       style={{
         clipPath: PLANK_CLIP_PATH,
       }}

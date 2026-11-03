@@ -52,7 +52,9 @@ export function MaterialCardStack() {
           items={materialItems}
           initialIndex={1}
           autoAdvance={true}
-          intervalMs={3200}
+          intervalMs={3000}
+          springStiffness={160}
+          springDamping={30}
           pauseOnHover={true}
           showDots={true}
           cardWidth={480}

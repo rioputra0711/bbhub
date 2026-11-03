@@ -6,7 +6,6 @@ export interface TimberScrollHeroProps {
   imageSrc?: string
   windowSrc?: string
   title?: string
-  subtitle?: string
   scrollHint?: string
   brandMark?: string
   signature?: { name: string; url: string } | false
@@ -33,7 +32,6 @@ export default function TimberScrollHero({
   imageSrc = DEFAULT_IMAGE,
   windowSrc = DEFAULT_WINDOW,
   title = "Solid wood. Direct from source to production.",
-  subtitle = "TEAK · MAHOGANY · SUNGKAI · SUSTAINABLE TIMBER SUPPLY",
   scrollHint = "SCROLL TO EXPLORE",
   brandMark = "BBHub",
   signature = DEFAULT_SIGNATURE,
@@ -288,11 +286,8 @@ export default function TimberScrollHero({
               alignItems: "center",
               padding: "8px 22px",
               borderRadius: "9999px",
-              background: "rgba(14, 18, 14, 0.6)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-              border: "1px solid rgba(255, 244, 232, 0.2)",
-              boxShadow: "0 6px 30px rgba(0,0,0,0.6)",
+              background: "transparent",
+              border: "1px solid rgba(255, 244, 232, 0.35)",
             }}
           >
             <span
@@ -327,20 +322,6 @@ export default function TimberScrollHero({
             willChange: "transform, opacity",
           }}
         >
-          <span
-            style={{
-              fontFamily: SANS,
-              fontWeight: 600,
-              fontSize: "clamp(11px, 1.4vw, 13px)",
-              letterSpacing: "0.28em",
-              color: "#e8cba2",
-              marginBottom: "18px",
-              textTransform: "uppercase",
-              textShadow: "0 2px 14px rgba(0,0,0,0.8)",
-            }}
-          >
-            {subtitle}
-          </span>
           <h1
             style={{
               fontFamily: SANS,
