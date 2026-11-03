@@ -97,11 +97,11 @@ export function CardStack<T extends CardStackItem>({
 
   perspectivePx = 1100,
   depthPx = 140,
-  tiltXDeg = 14,
+  tiltXDeg = 12,
 
-  activeLiftPx = 24,
-  activeScale = 1.04,
-  inactiveScale = 0.93,
+  activeLiftPx = 22,
+  activeScale = 1.03,
+  inactiveScale = 0.94,
 
   springStiffness = 280,
   springDamping = 28,
@@ -211,10 +211,6 @@ export function CardStack<T extends CardStackItem>({
           className="pointer-events-none absolute inset-x-0 top-6 mx-auto h-48 w-[70%] rounded-full bg-amber-500/5 blur-3xl"
           aria-hidden="true"
         />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-40 w-[76%] rounded-full bg-black/5 blur-3xl"
-          aria-hidden="true"
-        />
 
         <div
           className="absolute inset-0 flex items-end justify-center"
@@ -231,7 +227,7 @@ export function CardStack<T extends CardStackItem>({
               // hide far-away cards cleanly
               if (!visible) return null;
 
-              // fan geometry - dynamic 3D arc fanning
+              // fan geometry
               const rotateZ = off * stepDeg;
               const x = off * cardSpacing;
               const y = abs * 10;
@@ -242,7 +238,7 @@ export function CardStack<T extends CardStackItem>({
               const scale = isActive ? activeScale : inactiveScale;
               const lift = isActive ? -activeLiftPx : 0;
 
-              const rotateX = isActive ? 4 : tiltXDeg;
+              const rotateX = isActive ? 3 : tiltXDeg;
 
               const zIndex = 100 - abs;
 
@@ -268,10 +264,10 @@ export function CardStack<T extends CardStackItem>({
                   }
                 : {};
 
-              // Volumetric 3D slab extrusion filter (layered downward offsets create solid wood thickness)
-              const volumetric3DFilter = isActive
-                ? "drop-shadow(0 2px 0 #E2DCce) drop-shadow(0 4px 0 #D6CFBF) drop-shadow(0 6px 0 #C9C1B0) drop-shadow(0 8px 0 #BCB3A0) drop-shadow(0 10px 0 #ABA18C) drop-shadow(0 26px 36px rgba(0,0,0,0.22))"
-                : "drop-shadow(0 2px 0 #E2DCce) drop-shadow(0 4px 0 #D6CFBF) drop-shadow(0 6px 0 #C9C1B0) drop-shadow(0 8px 0 #BCB3A0) drop-shadow(0 18px 26px rgba(0,0,0,0.15))";
+              // Balanced 3D wood thickness (7px plank slab) + contact drop shadow underneath
+              const balanced3DFilter = isActive
+                ? "drop-shadow(0 2px 0 #DBD4C4) drop-shadow(0 4px 0 #C9C0AE) drop-shadow(0 6px 0 #B6AB95) drop-shadow(0 7px 0 #9E937C) drop-shadow(0 24px 34px rgba(0,0,0,0.22))"
+                : "drop-shadow(0 2px 0 #DBD4C4) drop-shadow(0 4px 0 #C9C0AE) drop-shadow(0 6px 0 #B6AB95) drop-shadow(0 7px 0 #9E937C) drop-shadow(0 16px 22px rgba(0,0,0,0.14))";
 
               return (
                 <motion.div
@@ -288,7 +284,7 @@ export function CardStack<T extends CardStackItem>({
                     height: cardHeight,
                     zIndex,
                     transformStyle: "preserve-3d",
-                    filter: volumetric3DFilter,
+                    filter: balanced3DFilter,
                   }}
                   initial={
                     reduceMotion
@@ -377,7 +373,7 @@ export function CardStack<T extends CardStackItem>({
 function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
   return (
     <div
-      className="relative h-full w-full bg-[#FAF9F5] overflow-hidden border-t-2 border-white/90"
+      className="relative h-full w-full bg-[#FAF9F5] overflow-hidden border-t border-white/80"
       style={{
         clipPath: PLANK_CLIP_PATH,
       }}
@@ -399,13 +395,9 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
       </div>
 
       {/* Top bevel light highlight */}
-      <div className="pointer-events-none absolute top-0 inset-x-0 h-4 bg-gradient-to-b from-white/60 to-transparent z-10" />
+      <div className="pointer-events-none absolute top-0 inset-x-0 h-3 bg-gradient-to-b from-white/70 to-transparent z-10" />
 
-      {/* Side bevel shading for 3D depth */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-black/20 to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-black/25 to-transparent z-10" />
-
-      {/* Bottom gradient overlay for text readability & grounded volume */}
+      {/* Bottom gradient overlay for text readability */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
       {/* Content with white text for high clarity */}

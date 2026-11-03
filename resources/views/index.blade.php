@@ -11,7 +11,7 @@
 
     <!-- Styles -->
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar-init.tsx', 'resources/js/hero-init.tsx', 'resources/js/material-stack-init.tsx'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar-init.tsx', 'resources/js/hero-init.tsx', 'resources/js/material-stack-init.tsx', 'resources/js/production-carousel-init.tsx'])
 </head>
 <body class="bg-white font-sans text-[#292821] antialiased min-h-screen relative">
         <!-- React Navbar container -->
@@ -70,84 +70,8 @@
                 <div id="material-stack-root" class="w-full"></div>
             </div>
 
-            <!-- Featured stock -->
-            <div class="flex flex-col gap-[32px] items-start w-full">
-                <div class="flex gap-[28px] items-end w-full">
-                    <div class="flex flex-1 flex-col gap-[10px] items-start">
-                        <span class="font-semibold leading-[1.5] text-[#a38355] text-[12px] tracking-wider uppercase">AVAILABLE FOR PRODUCTION</span>
-                        <h2 class="font-medium leading-[1.2] text-[#292821] text-[36px] tracking-[-1.1px]">Selected material, ready to order.</h2>
-                    </div>
-                    <a href="#" class="bg-white border border-[#e7e4dc] flex gap-[10px] h-[46px] items-center justify-center px-[22px] rounded-[100px] text-[#292821] font-medium text-[14px]">
-                        <span>View all stock</span>
-                        <div class="relative size-[16px]">
-                            <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-right-1.svg') }}" />
-                        </div>
-                    </a>
-                </div>
-
-                <div class="flex gap-[24px] items-start w-full">
-                    <!-- Card 1 -->
-                    <div class="flex flex-1 flex-col gap-[15px] items-start">
-                        <div class="h-[220px] relative rounded-[4px] w-full overflow-hidden">
-                            <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/stock-teak-kd.png') }}" />
-                        </div>
-                        <div class="flex flex-col gap-[7px] items-start w-full">
-                            <div class="flex font-normal items-start justify-between leading-[1.5] text-[11px] w-full">
-                                <span class="text-[#79766e]">TW-A-25 · 25 × 150 mm</span>
-                                <span class="text-[#52694e]">24.8 m³ available</span>
-                            </div>
-                            <h3 class="font-medium leading-[1.5] text-[#292821] text-[20px]">Teak kiln dried</h3>
-                            <p class="font-normal leading-[1.5] text-[#79766e] text-[12px]">Grade A · MC 10–12%</p>
-                            <div class="flex items-center justify-between w-full pt-1">
-                                <span class="font-medium leading-[1.5] text-[#292821] text-[16px]">Rp18.500.000 / m³</span>
-                                <div class="relative size-[20px]">
-                                    <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-up-right.svg') }}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="flex flex-1 flex-col gap-[15px] items-start">
-                        <div class="h-[220px] relative rounded-[4px] w-full overflow-hidden">
-                            <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/stock-mahoni.png') }}" />
-                        </div>
-                        <div class="flex flex-col gap-[7px] items-start w-full">
-                            <div class="flex font-normal items-start justify-between leading-[1.5] text-[11px] w-full">
-                                <span class="text-[#79766e]">MH-A-30 · 30 × 200 mm</span>
-                                <span class="text-[#52694e]">36.0 m³ available</span>
-                            </div>
-                            <h3 class="font-medium leading-[1.5] text-[#292821] text-[20px]">Mahogany sawn timber</h3>
-                            <p class="font-normal leading-[1.5] text-[#79766e] text-[12px]">Grade A · MC 12–15%</p>
-                            <div class="flex items-center justify-between w-full pt-1">
-                                <span class="font-medium leading-[1.5] text-[#292821] text-[16px]">Rp8.500.000 / m³</span>
-                                <div class="relative size-[20px]">
-                                    <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-up-right.svg') }}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="flex flex-1 flex-col gap-[15px] items-start">
-                        <div class="h-[220px] relative rounded-[4px] w-full overflow-hidden">
-                            <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/stock-sungkai.png') }}" />
-                        </div>
-                        <div class="flex flex-col gap-[7px] items-start w-full">
-                            <div class="flex font-normal items-start justify-between leading-[1.5] text-[11px] w-full">
-                                <span class="text-[#79766e]">SK-A-25 · 25 × 150 mm</span>
-                                <span class="text-[#52694e]">18.5 m³ available</span>
-                            </div>
-                            <h3 class="font-medium leading-[1.5] text-[#292821] text-[20px]">Sungkai S4S</h3>
-                            <p class="font-normal leading-[1.5] text-[#79766e] text-[12px]">Grade A · MC 10–12%</p>
-                            <div class="flex items-center justify-between w-full pt-1">
-                                <span class="font-medium leading-[1.5] text-[#292821] text-[16px]">Rp9.800.000 / m³</span>
-                                <div class="relative size-[20px]">
-                                    <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-up-right.svg') }}" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Featured stock (React Carousel Cards) -->
+            <div id="production-carousel-root" class="w-full"></div>
         </div>
 
         <!-- Sourcing, process and logistics -->

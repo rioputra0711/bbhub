@@ -341,7 +341,7 @@ export default function TimberScrollHero({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "0 8% 8vh",
+          padding: "0 8% 6vh",
           textAlign: "center",
           opacity: 0,
           pointerEvents: "none",
@@ -352,32 +352,46 @@ export default function TimberScrollHero({
           style={{
             fontFamily: SANS,
             fontWeight: 800,
-            fontSize: "clamp(72px, 18vw, 240px)",
-            lineHeight: 1,
-            letterSpacing: "-0.03em",
-            color: COL_TEXT,
-            mixBlendMode: "overlay",
-            opacity: 0.85,
-            textShadow: "0 4px 30px rgba(0,0,0,0.5)",
+            fontSize: "clamp(76px, 19vw, 250px)",
+            lineHeight: 0.95,
+            letterSpacing: "-0.04em",
+            background:
+              "linear-gradient(180deg, #ffffff 20%, #f6edd9 60%, rgba(210, 175, 120, 0.6) 95%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            filter:
+              "drop-shadow(0 14px 45px rgba(0,0,0,0.85)) drop-shadow(0 0 35px rgba(255,225,150,0.3))",
           }}
         >
           {brandMark}
         </span>
-        <span
+        <div
           style={{
-            fontFamily: SANS,
-            fontWeight: 600,
-            fontSize: "clamp(12px, 1.6vw, 15px)",
-            letterSpacing: "0.25em",
-            color: "#e8cba2",
-            marginTop: "16px",
-            textTransform: "uppercase",
-            mixBlendMode: "overlay",
-            opacity: 0.9,
+            marginTop: "20px",
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "8px 22px",
+            borderRadius: "9999px",
+            background: "rgba(14, 18, 14, 0.6)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(255, 244, 232, 0.2)",
+            boxShadow: "0 6px 30px rgba(0,0,0,0.6)",
           }}
         >
-          Timber supply, connected.
-        </span>
+          <span
+            style={{
+              fontFamily: SANS,
+              fontWeight: 600,
+              fontSize: "clamp(11px, 1.3vw, 13px)",
+              letterSpacing: "0.26em",
+              color: "#f5ebd9",
+              textTransform: "uppercase",
+            }}
+          >
+            Timber supply, connected.
+          </span>
+        </div>
       </div>
 
       {/* Initial Hero Title */}

@@ -12,7 +12,8 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/navbar-init.tsx',
                 'resources/js/hero-init.tsx',
-                'resources/js/material-stack-init.tsx'
+                'resources/js/material-stack-init.tsx',
+                'resources/js/production-carousel-init.tsx'
             ],
             refresh: true,
         }),

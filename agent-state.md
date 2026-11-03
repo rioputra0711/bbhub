@@ -1,10 +1,9 @@
 ## Goal
-Membuat kartu `CardStack` menjadi 3D bervolume tebal (volumetric 3D timber slab) dengan efek bevel cahaya di bagian atas, shading di sisi tepi, ketebalan potongan kayu 10px via layered extrusion drop shadow, dan kemiringan perspektif 3D nyata.
+Menaikkan kembali ketebalan papan 3D kayu menjadi 7px solid plank slab yang seimbang dan mempertahankan bayangan kontak halus di bawah kartu.
 
 ## Status Terakhir
-- Menerapkan efek ketebalan balok kayu 10px (`volumetric3DFilter`) dengan multi-step drop shadow (`#E2DCce` s/d `#ABA18C`) pada `resources/js/components/ui/card-stack.tsx`.
-- Menambahkan highlight cahaya tepi atas (`from-white/60`) dan shading sisi samping untuk menegaskan ketebalan 3D.
-- Menyesuaikan sudut kemiringan perspektif (`tiltXDeg = 14`, `perspectivePx = 1100`) agar ketebalan volume bawah terlihat nyata oleh mata.
+- Menyesuaikan `balanced3DFilter` di `resources/js/components/ui/card-stack.tsx` dengan ketebalan 7px (4-layer bevel gradient `#DBD4C4` -> `#9E937C`).
+- Mempertahankan bayangan kontak alami (`drop-shadow(0 24px 34px rgba(0,0,0,0.22))`) di bawah balok papan kayu.
 - Menjalankan `npm run build` dengan hasil sukses.
 
 ## File Terlibat
@@ -12,7 +11,7 @@ Membuat kartu `CardStack` menjadi 3D bervolume tebal (volumetric 3D timber slab)
 - `agent-state.md`
 
 ## Keputusan Teknis
-- Menggunakan multi-layered solid drop-shadow pada bentuk poligon bergerigi untuk menghasilkan ketebalan 3D (extrusion slab) setebal 10px yang mengikuti persis lekukan tepi kayu bergerigi.
+- Menggunakan ketebalan 7px yang proporsional sehingga papan kayu tampak solid bervolume tanpa terlihat terlalu tebal maupun terlalu tipis.
 
 ## Langkah Berikutnya
 1. Selesai. Menunggu instruksi selanjutnya.
