@@ -7,6 +7,9 @@ export interface TimberScrollHeroProps {
   windowSrc?: string
   title?: string
   scrollHint?: string
+  pillText?: string
+  windowAlt?: string
+  signatureLabel?: string
   brandMark?: string
   signature?: { name: string; url: string } | false
   className?: string
@@ -33,6 +36,9 @@ export default function TimberScrollHero({
   windowSrc = DEFAULT_WINDOW,
   title = "Solid wood. Direct from source to production.",
   scrollHint = "SCROLL TO EXPLORE",
+  pillText = "Timber supply, connected.",
+  windowAlt = "Window frame",
+  signatureLabel = "by",
   brandMark = "BBHub",
   signature = DEFAULT_SIGNATURE,
   className,
@@ -231,7 +237,7 @@ export default function TimberScrollHero({
         <img
           ref={windowRef}
           src={windowSrc}
-          alt="Window frame"
+          alt={windowAlt}
           style={{
             position: "absolute",
             inset: 0,
@@ -300,7 +306,7 @@ export default function TimberScrollHero({
                 textTransform: "uppercase",
               }}
             >
-              Timber supply, connected.
+              {pillText}
             </span>
           </div>
         </div>
@@ -425,7 +431,7 @@ export default function TimberScrollHero({
               zIndex: 6,
             }}
           >
-            by{" "}
+            {signatureLabel}{" "}
             <a
               href={signature.url}
               style={{

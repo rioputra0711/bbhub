@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
+        'is_active',
     ];
 
     /**
@@ -44,6 +47,27 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
         ];
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
+
+    public function managedCustomers()
+    {
+        return $this->hasMany(Customer::class, 'sales_person_id');
+    }
+
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class, 'sales_person_id');
+    }
+
+    public function warehouseTasks()
+    {
+        return $this->hasMany(WarehouseTask::class, 'assigned_to');
     }
 }

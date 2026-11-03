@@ -2,18 +2,19 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { NavBar } from './components/ui/tubelight-navbar';
 import { Home, Package, LayoutGrid, Info, Truck, ShoppingBag } from 'lucide-react';
+import { locale, t } from './lib/i18n';
 
 const navItems = [
-  { name: 'Products', url: '#', icon: Package },
-  { name: 'Categories', url: '#', icon: LayoutGrid },
-  { name: 'Home', url: '#', icon: Home },
-  { name: 'About', url: '#', icon: Info },
-  { name: 'Logistics', url: '#', icon: Truck }
+  { name: t('nav.products'), url: '#', icon: Package },
+  { name: t('nav.categories'), url: '#', icon: LayoutGrid },
+  { name: t('nav.home'), url: '#', icon: Home },
+  { name: t('nav.about'), url: '#', icon: Info },
+  { name: t('nav.logistics'), url: '#', icon: Truck }
 ];
 
 const navActions = [
-  { name: 'Login', url: '#' },
-  { name: 'Bag', url: '#', icon: ShoppingBag, hideLabel: true }
+  { name: t('nav.login'), url: '#' },
+  { name: t('nav.bag'), url: '#', icon: ShoppingBag, hideLabel: true }
 ];
 
 const navLanguages = ['EN', 'ID'];
@@ -26,9 +27,11 @@ if (container) {
       items={navItems}
       actions={navActions}
       languages={navLanguages}
-      defaultActive="Home"
+      defaultLanguage={locale === 'id' ? 'ID' : 'EN'}
+      defaultActive={t('nav.home')}
       onLanguageChange={(code) => {
         document.documentElement.lang = code === 'ID' ? 'id' : 'en';
+        window.location.href = `/language/${code.toLowerCase()}`;
       }}
     />
   );

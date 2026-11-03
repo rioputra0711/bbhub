@@ -56,6 +56,8 @@ export type CardStackProps<T extends CardStackItem> = {
   /** UI */
   showDots?: boolean;
   className?: string;
+  goToLabel?: (title: string) => string;
+  placeholder?: string;
 
   /** Hooks */
   onChangeIndex?: (index: number, item: T) => void;
@@ -112,6 +114,8 @@ export function CardStack<T extends CardStackItem>({
 
   showDots = true,
   className,
+  goToLabel,
+  placeholder,
 
   onChangeIndex,
   renderCard,
@@ -323,7 +327,7 @@ export function CardStack<T extends CardStackItem>({
                     {renderCard ? (
                       renderCard(item, { active: isActive })
                     ) : (
-                      <DefaultFanCard item={item} active={isActive} />
+                      <DefaultFanCard item={item} active={isActive} placeholder={placeholder} />
                     )}
                   </div>
                 </motion.div>
@@ -349,7 +353,7 @@ export function CardStack<T extends CardStackItem>({
                       ? "bg-[#292821] w-6"
                       : "bg-[#292821]/20 hover:bg-[#292821]/45",
                   )}
-                  aria-label={`Go to ${it.title}`}
+                  aria-label={goToLabel ? goToLabel(it.title) : `Go to ${it.title}`}
                 />
               );
             })}
@@ -360,7 +364,14 @@ export function CardStack<T extends CardStackItem>({
   );
 }
 
-function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
+function DefaultFanCard({
+  item,
+  placeholder = "Timber Plank",
+}: {
+  item: CardStackItem;
+  active: boolean;
+  placeholder?: string;
+}) {
   return (
     <div
       className="relative h-full w-full bg-[#FAFAFA] overflow-hidden border-t border-white/80"
@@ -381,7 +392,7 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-stone-200 text-sm text-stone-600">
-            Timber Plank
+            {placeholder}
           </div>
         )}
       </div>

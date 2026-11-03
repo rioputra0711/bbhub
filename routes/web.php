@@ -1,7 +1,16 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', HomeController::class)->name('home');
+
+Route::get('language/{locale}', function (string $locale) {
+    abort_unless(in_array($locale, SetLocale::SUPPORTED, true), 404);
+
+    session(['locale' => $locale]);
+    app()->setLocale($locale);
+
+    return redirect()->back(fallback: route('home'));
+})->name('language.switch');

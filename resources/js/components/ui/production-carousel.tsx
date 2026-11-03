@@ -1,118 +1,110 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { ChevronLeft, ChevronRight, Heart, Star } from "lucide-react"
+import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { locale, t } from "@/lib/i18n"
 
-export interface TimberStockItem {
-  id: string
+/** Row shape emitted by HomeController into `#bbhub-products`. */
+export interface ProductRow {
+  id: number
+  code: string
   title: string
-  image: string
-  location: string
-  spec?: string
-  stockAvailable?: string
-  price: string
-  rating?: number
-  reviewCount?: number
-  badge?: string
+  image: string | null
+  species: string | null
+  location: string | null
+  dimensions: string | null
+  volume: number
+  moisture_min: number | null
+  moisture_max: number | null
+  price: number | null
+  grade: string | null
+  custom: boolean
 }
 
-const sampleTimberStock: TimberStockItem[] = [
-  {
-    id: "stock-1",
-    title: "Teak Kiln Dried Boards",
-    image: "/images/serat/stock-teak-kd.png",
-    location: "Jepara, Central Java · 25 × 150 mm",
-    stockAvailable: "24.8 m³ available · MC 10–12%",
-    price: "Rp 18.500.000 / m³",
-    rating: 4.98,
-    reviewCount: 142,
-    badge: "Ready Stock",
-  },
-  {
-    id: "stock-2",
-    title: "Mahogany Sawn Timber",
-    image: "/images/serat/stock-mahoni.png",
-    location: "Semarang, Central Java · 30 × 200 mm",
-    stockAvailable: "36.0 m³ available · MC 12–15%",
-    price: "Rp 8.500.000 / m³",
-    rating: 4.95,
-    reviewCount: 88,
-    badge: "Best Seller",
-  },
-  {
-    id: "stock-3",
-    title: "Sungkai S4S Planed",
-    image: "/images/serat/stock-sungkai.png",
-    location: "Blora, Central Java · 25 × 150 mm",
-    stockAvailable: "18.5 m³ available · MC 10–12%",
-    price: "Rp 9.800.000 / m³",
-    rating: 4.97,
-    reviewCount: 64,
-    badge: "Grade A",
-  },
-  {
-    id: "stock-4",
-    title: "Merbau Heavy Decking",
-    image: "/images/timber-planks.jpg",
-    location: "Papua, Indonesia · 20 × 140 mm",
-    stockAvailable: "42.0 m³ available · Kiln Dried",
-    price: "Rp 16.200.000 / m³",
-    rating: 4.99,
-    reviewCount: 110,
-    badge: "Export Grade",
-  },
-  {
-    id: "stock-5",
-    title: "Teak Round Log Selection",
-    image: "/images/timber-logs.jpg",
-    location: "Cepu, Central Java · Dia 40+ cm",
-    stockAvailable: "55.4 m³ available · Perhutani",
-    price: "Rp 22.000.000 / m³",
-    rating: 4.96,
-    reviewCount: 76,
-    badge: "FSC Certified",
-  },
-  {
-    id: "stock-6",
-    title: "Bengkirai Exterior Slats",
-    image: "/images/serat/cat-solid-wood.png",
-    location: "Kalimantan, Indonesia · 19 × 90 mm",
-    stockAvailable: "30.2 m³ available · Air Dried",
-    price: "Rp 11.500.000 / m³",
-    rating: 4.92,
-    reviewCount: 53,
-    badge: "Weatherproof",
-  },
-  {
-    id: "stock-7",
-    title: "Pine Kiln Dried Slats",
-    image: "/images/serat/cat-processed-wood.png",
-    location: "North Sumatra · 18 × 120 mm",
-    stockAvailable: "60.0 m³ available · MC 8–10%",
-    price: "Rp 6.200.000 / m³",
-    rating: 4.89,
-    reviewCount: 41,
-    badge: "Sustainable",
-  },
-]
+function readProducts(): ProductRow[] {
+  if (typeof document === "undefined") return []
 
-const TimberCard = ({ item }: { item: TimberStockItem }) => {
+  const node = document.getElementById("bbhub-products")
+  if (!node?.textContent) return []
+
+  try {
+    const parsed = JSON.parse(node.textContent)
+    return Array.isArray(parsed) ? (parsed as ProductRow[]) : []
+  } catch {
+    return []
+  }
+}
+
+const products = readProducts()
+
+function trimNumber(value: number): string {
+  return Number.isInteger(value) ? String(value) : String(Math.round(value * 100) / 100)
+}
+
+function formatVolume(value: number): string {
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(value)
+}
+
+function formatPrice(value: number): string {
+  return new Intl.NumberFormat(locale, {
+    maximumFractionDigits: 0,
+  }).format(value)
+}
+
+function buildLocation(row: ProductRow): string | null {
+  const parts = [row.location, row.dimensions].filter(
+    (part): part is string => Boolean(part && part.trim()),
+  )
+
+  return parts.length ? parts.join(" · ") : null
+}
+
+function buildStock(row: ProductRow): string {
+  const parts = [t("carousel.volume_available").replace(":volume", formatVolume(row.volume))]
+
+  if (row.moisture_min !== null && row.moisture_max !== null) {
+    parts.push(
+      t("carousel.moisture").replace(
+        ":range",
+        t("carousel.moisture_range")
+          .replace(":min", trimNumber(row.moisture_min))
+          .replace(":max", trimNumber(row.moisture_max)),
+      ),
+    )
+  }
+
+  return parts.join(" · ")
+}
+
+const TimberCard = ({ row }: { row: ProductRow }) => {
   const [isFavorite, setIsFavorite] = useState(false)
+
+  const location = buildLocation(row)
+  const badge = row.custom ? t("carousel.custom_order") : row.grade
 
   return (
     <Card className="group relative flex h-[300px] sm:h-[330px] w-full flex-col overflow-hidden rounded-xl border border-[#e7e4dc] bg-white shadow-xs transition-shadow duration-300 hover:shadow-md">
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-xl bg-neutral-100">
-        <img
-          alt={item.title}
-          className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
-          src={item.image}
-          loading="lazy"
-          decoding="async"
-        />
+        {row.image ? (
+          <img
+            alt={t("carousel.image_alt").replace(":title", row.title)}
+            className="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+            src={row.image}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div className="flex size-full items-center justify-center bg-neutral-100 text-xs text-[#79766e]">
+            {row.species ?? row.code}
+          </div>
+        )}
         <Button
           type="button"
           onClick={(e) => {
@@ -129,11 +121,11 @@ const TimberCard = ({ item }: { item: TimberStockItem }) => {
               isFavorite ? "fill-rose-500 text-rose-500" : ""
             }`}
           />
-          <span className="sr-only">Add to favorites</span>
+          <span className="sr-only">{t("carousel.favorites")}</span>
         </Button>
-        {item.badge && (
+        {badge && (
           <Badge className="absolute top-2.5 left-2.5 rounded-md border-0 bg-white/95 px-2 py-0.5 font-medium text-[#292821] text-xs shadow-xs">
-            {item.badge}
+            {badge}
           </Badge>
         )}
       </div>
@@ -141,34 +133,22 @@ const TimberCard = ({ item }: { item: TimberStockItem }) => {
       <div className="flex flex-1 flex-col justify-between p-3.5">
         <CardContent className="p-0 space-y-1">
           <h3 className="font-semibold text-sm tracking-tight text-[#292821] line-clamp-1">
-            {item.title}
+            {row.title}
           </h3>
-          <p className="text-[#79766e] text-xs tracking-tight line-clamp-1">
-            {item.location}
-          </p>
-          {item.stockAvailable && (
-            <p className="text-[#52694e] font-medium text-xs tracking-tight">
-              {item.stockAvailable}
-            </p>
+          {location && (
+            <p className="text-[#79766e] text-xs tracking-tight line-clamp-1">{location}</p>
           )}
+          <p className="text-[#52694e] font-medium text-xs tracking-tight">
+            {buildStock(row)}
+          </p>
         </CardContent>
 
         <CardFooter className="mt-auto flex items-center justify-between p-0 pt-2 border-t border-[#f0eee6]">
-          <div className="flex items-center gap-1 text-xs">
-            {item.rating && (
-              <span className="flex items-center gap-0.5 font-medium text-[#292821]">
-                <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                {item.rating}
-              </span>
-            )}
-            {item.reviewCount && (
-              <span className="text-[#79766e] text-xs tracking-tight">
-                · ({item.reviewCount})
-              </span>
-            )}
-          </div>
+          <span className="text-[#79766e] text-[11px] tracking-tight">{row.code}</span>
           <span className="font-semibold text-xs text-[#292821] tracking-tight">
-            {item.price}
+            {row.price !== null
+              ? `Rp ${formatPrice(row.price)} ${t("carousel.per_m3")}`
+              : t("carousel.custom_order")}
           </span>
         </CardFooter>
       </div>
@@ -177,14 +157,14 @@ const TimberCard = ({ item }: { item: TimberStockItem }) => {
 }
 
 export default function ProductionCarousel({
-  title = "Selected material, ready to order.",
-  categoryTag = "AVAILABLE FOR PRODUCTION",
-  items = sampleTimberStock,
+  title = t("carousel.title"),
+  categoryTag = t("carousel.tag"),
+  items = products,
   viewAllHref = "#stock",
 }: {
   title?: string
   categoryTag?: string
-  items?: TimberStockItem[]
+  items?: ProductRow[]
   viewAllHref?: string
 }) {
   const scrollContainer = useRef<HTMLDivElement>(null)
@@ -239,16 +219,16 @@ export default function ProductionCarousel({
           className="self-start md:self-auto border border-[#e7e4dc] bg-white hover:bg-neutral-100 flex gap-2 h-9 items-center justify-center px-4 rounded-full text-[#292821] font-medium text-xs transition-colors"
           href={viewAllHref}
         >
-          <span>View all stock</span>
+          <span>{t("carousel.view_all")}</span>
           <ChevronRight className="h-3.5 w-3.5" />
         </a>
       </div>
 
-      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-3 px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-[1280px] items-center px-5 sm:px-8 lg:px-12">
         <Button
           type="button"
           className={cn(
-            "hidden sm:flex h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
+            "absolute top-1/2 left-0 z-10 hidden h-9 w-9 -translate-y-1/2 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200 sm:flex sm:-left-2 lg:-left-3",
             !canScrollLeft && "invisible pointer-events-none",
           )}
           tabIndex={canScrollLeft ? 0 : -1}
@@ -257,11 +237,11 @@ export default function ProductionCarousel({
           variant="outline"
         >
           <ChevronLeft className="h-4 w-4" />
-          <span className="sr-only">Scroll left</span>
+          <span className="sr-only">{t("carousel.scroll_left")}</span>
         </Button>
 
         <div
-          className="flex min-w-0 flex-1 snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pt-1"
+          className="flex w-full min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto pb-4 pt-1"
           ref={scrollContainer}
           style={{
             scrollbarWidth: "none",
@@ -278,17 +258,20 @@ export default function ProductionCarousel({
                   className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2"
                   href={`#stock-${item.id}`}
                 >
-                  <TimberCard item={item} />
+                  <TimberCard row={item} />
                 </a>
               </div>
             ))}
+            {items.length === 0 && (
+              <p className="py-10 text-sm text-[#79766e]">{t("carousel.empty")}</p>
+            )}
           </div>
         </div>
 
         <Button
           type="button"
           className={cn(
-            "hidden sm:flex h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
+            "absolute top-1/2 right-0 z-10 hidden h-9 w-9 -translate-y-1/2 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200 sm:flex sm:-right-2 lg:-right-3",
             !canScrollRight && "invisible pointer-events-none",
           )}
           tabIndex={canScrollRight ? 0 : -1}
@@ -297,7 +280,7 @@ export default function ProductionCarousel({
           variant="outline"
         >
           <ChevronRight className="h-4 w-4" />
-          <span className="sr-only">Scroll right</span>
+          <span className="sr-only">{t("carousel.scroll_right")}</span>
         </Button>
       </div>
     </div>

@@ -17,6 +17,7 @@ interface NavBarProps {
   items: NavItem[]
   actions?: NavItem[]
   languages?: string[]
+  defaultLanguage?: string
   defaultActive?: string
   onLanguageChange?: (code: string) => void
   className?: string
@@ -51,10 +52,18 @@ const FLAGS: Record<string, React.ReactNode> = {
   ),
 }
 
-export function NavBar({ items, actions, languages, defaultActive, onLanguageChange, className }: NavBarProps) {
+export function NavBar({
+  items,
+  actions,
+  languages,
+  defaultLanguage,
+  defaultActive,
+  onLanguageChange,
+  className,
+}: NavBarProps) {
   const [activeTab, setActiveTab] = useState(defaultActive ?? items[0].name)
   const [hidden, setHidden] = useState(false)
-  const [lang, setLang] = useState(languages?.[0] ?? "EN")
+  const [lang, setLang] = useState(defaultLanguage ?? languages?.[0] ?? "EN")
   const [langOpen, setLangOpen] = useState(false)
   const langOpenRef = React.useRef(false)
 
