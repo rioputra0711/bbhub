@@ -11,7 +11,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/navbar-init.tsx',
-                'resources/js/hero-init.tsx'
+                'resources/js/hero-init.tsx',
+                'resources/js/material-stack-init.tsx'
             ],
             refresh: true,
         }),

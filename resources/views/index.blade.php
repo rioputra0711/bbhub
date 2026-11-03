@@ -11,7 +11,7 @@
 
     <!-- Styles -->
     @viteReactRefresh
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar-init.tsx', 'resources/js/hero-init.tsx'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/navbar-init.tsx', 'resources/js/hero-init.tsx', 'resources/js/material-stack-init.tsx'])
 </head>
 <body class="bg-white font-sans text-[#292821] antialiased min-h-screen relative">
         <!-- React Navbar container -->
@@ -58,55 +58,16 @@
         <!-- Categories and stock -->
         <div class="flex flex-col gap-[72px] items-start px-[72px] py-[80px] w-full bg-white">
             
-            <!-- Categories -->
-            <div class="flex flex-col gap-[32px] items-start w-full">
+            <!-- Categories / Know Your Material -->
+            <div class="flex flex-col gap-[32px] items-start w-full bg-white">
                 <div class="flex flex-col gap-[10px] items-start w-full">
                     <span class="font-semibold leading-[1.5] text-[#a38355] text-[12px] tracking-wider uppercase">KNOW YOUR MATERIAL</span>
                     <h2 class="font-medium leading-[1.2] text-[#292821] text-[36px] tracking-[-1.1px]">One need. Many possibilities.</h2>
                     <p class="font-normal leading-[1.5] text-[#79766e] text-[15px]">Solid and processed wood for every production scale.</p>
                 </div>
 
-                <div class="flex gap-[24px] items-start w-full">
-                    <!-- Cat 1 -->
-                    <div class="flex flex-1 flex-col gap-[15px] items-start">
-                        <div class="h-[235px] relative rounded-[4px] w-full overflow-hidden">
-                            <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/cat-solid-wood.png') }}" />
-                        </div>
-                        <div class="flex items-start justify-between w-full">
-                            <span class="font-medium leading-[1.5] text-[#292821] text-[22px]">Solid wood</span>
-                            <div class="relative size-[20px]">
-                                <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-up-right.svg') }}" />
-                            </div>
-                        </div>
-                        <p class="font-normal leading-[1.5] text-[#79766e] text-[13px]">Teak · Mahogany · Sungkai · Rubberwood</p>
-                    </div>
-                    <!-- Cat 2 -->
-                    <div class="flex flex-1 flex-col gap-[15px] items-start">
-                        <div class="h-[235px] relative rounded-[4px] w-full overflow-hidden">
-                            <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/cat-processed-wood.png') }}" />
-                        </div>
-                        <div class="flex items-start justify-between w-full">
-                            <span class="font-medium leading-[1.5] text-[#292821] text-[22px]">Processed wood</span>
-                            <div class="relative size-[20px]">
-                                <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-up-right.svg') }}" />
-                            </div>
-                        </div>
-                        <p class="font-normal leading-[1.5] text-[#79766e] text-[13px]">Kiln dried · Panels · Finger joint</p>
-                    </div>
-                    <!-- Cat 3 -->
-                    <div class="flex flex-1 flex-col gap-[15px] items-start">
-                        <div class="h-[235px] relative rounded-[4px] w-full overflow-hidden">
-                            <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/cat-custom-size.png') }}" />
-                        </div>
-                        <div class="flex items-start justify-between w-full">
-                            <span class="font-medium leading-[1.5] text-[#292821] text-[22px]">Custom sizes</span>
-                            <div class="relative size-[20px]">
-                                <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/arrow-up-right.svg') }}" />
-                            </div>
-                        </div>
-                        <p class="font-normal leading-[1.5] text-[#79766e] text-[13px]">Custom components & cut-to-size</p>
-                    </div>
-                </div>
+                <!-- React CardStack Interactive 3D component -->
+                <div id="material-stack-root" class="w-full"></div>
             </div>
 
             <!-- Featured stock -->
