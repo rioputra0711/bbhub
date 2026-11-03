@@ -104,7 +104,7 @@ const TimberCard = ({ item }: { item: TimberStockItem }) => {
   const [isFavorite, setIsFavorite] = useState(false)
 
   return (
-    <Card className="group relative flex h-[330px] w-full flex-col overflow-hidden rounded-xl border border-[#e7e4dc] bg-white shadow-xs transition-shadow duration-300 hover:shadow-md">
+    <Card className="group relative flex h-[300px] sm:h-[330px] w-full flex-col overflow-hidden rounded-xl border border-[#e7e4dc] bg-white shadow-xs transition-shadow duration-300 hover:shadow-md">
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-xl bg-neutral-100">
         <img
           alt={item.title}
@@ -225,7 +225,7 @@ export default function ProductionCarousel({
 
   return (
     <div className="w-full">
-      <div className="mx-auto mb-6 flex w-full max-w-[1280px] flex-col md:flex-row md:items-end justify-between gap-4 px-12">
+      <div className="mx-auto mb-6 flex w-full max-w-[1280px] flex-col md:flex-row md:items-end justify-between gap-4 px-5 sm:px-8 lg:px-12">
         <div className="flex flex-col gap-2 items-start">
           <span className="font-semibold leading-normal text-[#a38355] text-[12px] tracking-wider uppercase">
             {categoryTag}
@@ -244,11 +244,11 @@ export default function ProductionCarousel({
         </a>
       </div>
 
-      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-3">
+      <div className="mx-auto flex w-full max-w-[1280px] items-center gap-3 px-5 sm:px-8 lg:px-12">
         <Button
           type="button"
           className={cn(
-            "h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
+            "hidden sm:flex h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
             !canScrollLeft && "invisible pointer-events-none",
           )}
           tabIndex={canScrollLeft ? 0 : -1}
@@ -271,7 +271,7 @@ export default function ProductionCarousel({
           <div className="mx-auto flex flex-none gap-5">
             {items.map((item) => (
               <div
-                className="w-[260px] flex-none snap-start md:w-[280px]"
+                className="w-[220px] flex-none snap-start sm:w-[260px] md:w-[280px]"
                 key={item.id}
               >
                 <a
@@ -288,7 +288,7 @@ export default function ProductionCarousel({
         <Button
           type="button"
           className={cn(
-            "h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
+            "hidden sm:flex h-9 w-9 shrink-0 rounded-full border border-[#e7e4dc] bg-white hover:bg-neutral-100 text-[#292821] shadow-xs transition-opacity duration-200",
             !canScrollRight && "invisible pointer-events-none",
           )}
           tabIndex={canScrollRight ? 0 : -1}

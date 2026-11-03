@@ -393,17 +393,17 @@ function DefaultFanCard({ item }: { item: CardStackItem; active: boolean }) {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
       {/* Content with white text for high clarity */}
-      <div className="relative z-10 flex h-full flex-col justify-end px-12 py-7">
+      <div className="relative z-10 flex h-full flex-col justify-end px-6 py-5 sm:px-12 sm:py-7">
         {item.tag && (
-          <span className="mb-1 text-[11px] font-bold uppercase tracking-wider text-amber-300 drop-shadow">
+          <span className="mb-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-300 drop-shadow">
             {item.tag}
           </span>
         )}
-        <div className="truncate text-2xl font-bold text-white drop-shadow-md tracking-tight">
+        <div className="truncate text-lg sm:text-2xl font-bold text-white drop-shadow-md tracking-tight">
           {item.title}
         </div>
         {item.description ? (
-          <div className="mt-1 line-clamp-2 text-sm text-stone-100 drop-shadow">
+          <div className="mt-1 line-clamp-2 text-xs sm:text-sm text-stone-100 drop-shadow">
             {item.description}
           </div>
         ) : null}

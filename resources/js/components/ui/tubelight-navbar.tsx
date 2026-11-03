@@ -122,10 +122,10 @@ export function NavBar({ items, actions, languages, defaultActive, onLanguageCha
         transform: `translateY(${hidden ? "-140%" : "0"})`,
       }}
     >
-      <div className="relative flex w-full items-center justify-center px-4 sm:px-6">
+      <div className="relative flex w-full items-center justify-center px-3 sm:px-6">
         <div className="relative">
           {languages && languages.length > 0 && (
-            <div ref={langRef} className="absolute right-full top-1/2 mr-4 -translate-y-1/2">
+            <div ref={langRef} className="absolute right-full top-1/2 mr-3 hidden -translate-y-1/2 sm:mr-4 sm:block">
               <button
                 type="button"
                 onClick={() => setLangOpen((o) => !o)}
@@ -174,7 +174,7 @@ export function NavBar({ items, actions, languages, defaultActive, onLanguageCha
               )}
             </div>
           )}
-          <div className="flex items-center gap-1 sm:gap-3 bg-[#a38355]/40 border border-white/30 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg text-white">
+          <div className="flex items-center gap-0.5 sm:gap-3 bg-[#a38355]/40 border border-white/30 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg text-white">
           {items.map((item) => {
             const Icon = item.icon
             const isActive = activeTab === item.name
@@ -185,7 +185,7 @@ export function NavBar({ items, actions, languages, defaultActive, onLanguageCha
                 href={item.url}
                 onClick={() => setActiveTab(item.name)}
                 className={cn(
-                  "relative cursor-pointer text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-colors",
+                  "relative cursor-pointer text-sm font-semibold px-2.5 sm:px-6 py-2 rounded-full transition-colors",
                   "text-white/90 hover:text-white",
                   isActive && "bg-white/20 text-white shadow-sm",
                 )}
@@ -218,7 +218,7 @@ export function NavBar({ items, actions, languages, defaultActive, onLanguageCha
         </div>
 
           {actions && actions.length > 0 && (
-            <div className="absolute left-full top-1/2 ml-4 flex -translate-y-1/2 items-center gap-4 whitespace-nowrap text-white">
+            <div className="absolute left-full top-1/2 ml-2 flex -translate-y-1/2 items-center gap-3 whitespace-nowrap text-white sm:ml-4 sm:gap-4">
               {actions.map((action) => {
                 const Icon = action.icon
                 return (
@@ -231,7 +231,9 @@ export function NavBar({ items, actions, languages, defaultActive, onLanguageCha
                     )}
                   >
                     {Icon && <Icon size={18} strokeWidth={2.5} />}
-                    {!action.hideLabel && <span>{action.name}</span>}
+                    {!action.hideLabel && (
+                      <span className={Icon ? "hidden sm:inline" : "inline"}>{action.name}</span>
+                    )}
                     {typeof action.badge === "number" && action.badge > 0 && (
                       <span className="flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-white px-1 text-[10px] font-bold text-[#292821]">
                         {action.badge}

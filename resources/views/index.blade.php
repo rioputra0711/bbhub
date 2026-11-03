@@ -24,22 +24,22 @@
         <div class="flex flex-col items-start relative w-full">
             
             <!-- Core benefits -->
-            <div class="bg-[#FAFAFA] grid grid-cols-1 md:grid-cols-3 items-stretch px-[72px] py-[20px] w-full">
-                <div class="flex gap-[10px] items-center py-[6px] pr-[24px]">
+            <div class="bg-[#FAFAFA] grid grid-cols-1 md:grid-cols-3 items-stretch px-5 sm:px-10 lg:px-[72px] py-[16px] lg:py-[20px] w-full">
+                <div class="flex gap-[10px] items-center py-[10px] md:py-[6px] md:pr-[24px]">
                     <img alt="" class="block size-[18px] shrink-0" src="{{ asset('images/serat/ruler.svg') }}" loading="lazy" decoding="async" />
                     <div class="flex flex-col leading-[1.35]">
                         <span class="font-semibold text-[#292821] text-[13px]">Standardized specifications</span>
                         <span class="font-normal text-[#79766e] text-[12px]">Clear grades, dimensions, and moisture content.</span>
                     </div>
                 </div>
-                <div class="flex gap-[10px] items-center border-[#e7e4dc] md:border-l py-[6px] px-[24px]">
+                <div class="flex gap-[10px] items-center border-[#e7e4dc] border-t md:border-t-0 md:border-l py-[10px] md:py-[6px] md:px-[24px]">
                     <img alt="" class="block size-[18px] shrink-0" src="{{ asset('images/serat/shield-check.svg') }}" loading="lazy" decoding="async" />
                     <div class="flex flex-col leading-[1.35]">
                         <span class="font-semibold text-[#292821] text-[13px]">Legal timber sourcing</span>
                         <span class="font-normal text-[#79766e] text-[12px]">Batch-level documents and traceability.</span>
                     </div>
                 </div>
-                <div class="flex gap-[10px] items-center border-[#e7e4dc] md:border-l py-[6px] pl-[24px]">
+                <div class="flex gap-[10px] items-center border-[#e7e4dc] border-t md:border-t-0 md:border-l py-[10px] md:py-[6px] md:pl-[24px]">
                     <img alt="" class="block size-[18px] shrink-0" src="{{ asset('images/serat/truck.svg') }}" loading="lazy" decoding="async" />
                     <div class="flex flex-col leading-[1.35]">
                         <span class="font-semibold text-[#292821] text-[13px]">Connected shipping</span>
@@ -50,13 +50,13 @@
         </div>
 
         <!-- Categories and stock -->
-        <div class="lazy-section flex flex-col gap-[140px] items-start px-[72px] pt-[80px] pb-[80px] w-full bg-white">
+        <div class="lazy-section flex flex-col gap-16 sm:gap-24 lg:gap-[140px] items-start px-5 sm:px-10 lg:px-[72px] pt-14 sm:pt-20 pb-14 sm:pb-20 w-full bg-white">
             
             <!-- Categories / Know Your Material -->
             <div class="flex flex-col gap-[16px] items-start w-full bg-white">
                 <div class="flex flex-col gap-[10px] items-start w-full">
                     <span class="font-semibold leading-[1.5] text-[#a38355] text-[12px] tracking-wider uppercase">KNOW YOUR MATERIAL</span>
-                    <h2 class="font-medium leading-[1.2] text-[#292821] text-[36px] tracking-[-1.1px]">One need. Many possibilities.</h2>
+                    <h2 class="font-medium leading-[1.2] text-[#292821] text-[28px] sm:text-[32px] lg:text-[36px] tracking-[-1.1px]">One need. Many possibilities.</h2>
                     <p class="font-normal leading-[1.5] text-[#79766e] text-[15px]">Solid and processed wood for every production scale.</p>
                 </div>
 
@@ -72,14 +72,14 @@
         <div class="lazy-section flex flex-col items-start w-full">
             
             <!-- Quality story -->
-            <div class="bg-[#FAFAFA] flex gap-[72px] items-center p-[72px] w-full">
-                <div class="h-[470px] relative rounded-[32px] w-[580px] shrink-0 overflow-hidden">
+            <div class="bg-[#FAFAFA] flex flex-col lg:flex-row gap-8 lg:gap-[72px] items-center p-5 sm:p-10 lg:p-[72px] w-full">
+                <div class="h-[280px] sm:h-[360px] lg:h-[470px] relative rounded-[24px] lg:rounded-[32px] w-full lg:w-[580px] shrink-0 overflow-hidden">
                     <img alt="" class="absolute inset-0 max-w-none object-cover size-full" src="{{ asset('images/serat/story-inspection.png') }}" loading="lazy" decoding="async" />
                 </div>
                 <div class="flex flex-1 flex-col gap-[24px] items-start">
                     <div class="flex flex-col gap-[10px] items-start w-full">
                         <span class="font-semibold leading-[1.5] text-[#a38355] text-[12px] tracking-wider uppercase">CLEAR SOURCING</span>
-                        <h2 class="font-medium leading-[1.2] text-[#292821] text-[36px] tracking-[-1.1px]">Quality starts long before production.</h2>
+                        <h2 class="font-medium leading-[1.2] text-[#292821] text-[28px] sm:text-[32px] lg:text-[36px] tracking-[-1.1px]">Quality starts long before production.</h2>
                     </div>
                     <p class="font-normal leading-[1.5] text-[#79766e] text-[15px]">
                         We connect industrial needs with traceable raw materials. Every specification forms the basis of decisions, not just promises.
@@ -104,20 +104,20 @@
                             <span class="font-normal leading-[1.5] text-[#292821] text-[14px]">Measured dimensions, surfaces tailored to needs</span>
                         </div>
                     </div>
-                    <a href="#" class="bg-white border border-[#e7e4dc] flex h-[46px] items-center justify-center px-[22px] rounded-[100px] text-[#292821] font-medium text-[14px] mt-2">
+                    <a href="#" class="bg-white border border-[#e7e4dc] flex h-[46px] w-full sm:w-auto items-center justify-center px-[22px] rounded-[100px] text-[#292821] font-medium text-[14px] mt-2">
                         Discover BBHub standards
                     </a>
                 </div>
             </div>
 
             <!-- Order journey -->
-            <div class="flex gap-[56px] items-center px-[72px] py-[40px] w-full bg-white">
-                <div class="flex flex-col gap-[8px] items-start shrink-0 w-[260px]">
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-[56px] items-start lg:items-center px-5 sm:px-10 lg:px-[72px] py-10 lg:py-[40px] w-full bg-white">
+                <div class="flex flex-col gap-[8px] items-start shrink-0 w-full lg:w-[260px]">
                     <span class="font-semibold leading-[1.4] text-[#a38355] text-[11px] tracking-[0.12em] uppercase">From catalog to production floor</span>
-                    <h2 class="font-semibold leading-[1.15] text-[#292821] text-[28px] tracking-[-0.6px]">Simplified procurement.</h2>
+                    <h2 class="font-semibold leading-[1.15] text-[#292821] text-[24px] sm:text-[28px] tracking-[-0.6px]">Simplified procurement.</h2>
                 </div>
 
-                <div class="grid grid-cols-4 gap-[24px] flex-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] w-full lg:flex-1">
                     <div class="flex flex-col gap-[6px] items-start border-t border-[#e7e4dc] pt-[16px]">
                         <span class="font-semibold leading-none text-[#a38355] text-[12px] tabular-nums">01</span>
                         <h3 class="font-semibold leading-[1.3] text-[#292821] text-[15px]">Find material</h3>
@@ -142,16 +142,16 @@
             </div>
 
             <!-- Dexter logistics -->
-            <div class="bg-[#292821] relative flex items-center min-h-[560px] overflow-hidden p-[72px] w-full">
+            <div class="bg-[#292821] relative flex items-center min-h-[420px] lg:min-h-[560px] overflow-hidden px-5 sm:px-10 py-14 lg:p-[72px] w-full">
                 <img alt="" aria-hidden="true" src="{{ asset('images/serat/logistics-warehouse.png') }}" loading="lazy" decoding="async" class="absolute inset-0 size-full object-cover scale-110 blur-[3px]" />
                 <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10"></div>
-                <div class="relative z-10 flex flex-col gap-[24px] items-start w-[470px] shrink-0">
+                <div class="relative z-10 flex flex-col gap-[24px] items-start w-full max-w-[470px] shrink-0">
                     <span class="font-semibold leading-[1.5] text-[#d9bf94] text-[12px] tracking-wider uppercase">BBHUB × DEXTER</span>
-                    <h2 class="font-medium leading-[1.2] text-white text-[36px] tracking-[-1.1px]">Materials moving. Business keeps running.</h2>
+                    <h2 class="font-medium leading-[1.2] text-white text-[28px] sm:text-[32px] lg:text-[36px] tracking-[-1.1px]">Materials moving. Business keeps running.</h2>
                     <p class="font-normal leading-[1.5] text-white/85 text-[15px]">
                         Coordinate warehouse readiness, load volume, and delivery in a clear workflow. Access tracking via official Dexter links.
                     </p>
-                    <div class="flex gap-[30px] font-normal leading-[1.5] text-white text-[13px] w-full">
+                    <div class="flex flex-wrap gap-x-[30px] gap-y-2 font-normal leading-[1.5] text-white text-[13px] w-full">
                         <span class="flex items-center gap-[8px]"><svg aria-hidden="true" viewBox="0 0 512 512" fill="none" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" class="size-[16px] shrink-0 text-white"><path d="M255 85H150a65 65 0 0 0-65 65v210a65 65 0 0 0 65 65h210a65 65 0 0 0 65-65V255"/><path d="M170 210l85 85 193-193"/></svg>Structured preparation</span>
                         <span class="flex items-center gap-[8px]"><svg aria-hidden="true" viewBox="0 0 512 512" fill="none" stroke="currentColor" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" class="size-[16px] shrink-0 text-white"><path d="M255 85H150a65 65 0 0 0-65 65v210a65 65 0 0 0 65 65h210a65 65 0 0 0 65-65V255"/><path d="M170 210l85 85 193-193"/></svg>Shipping documents</span>
                     </div>
@@ -169,32 +169,32 @@
         <div class="lazy-section flex flex-col items-start w-full bg-white">
             
             <!-- Custom request -->
-            <div class="flex gap-[80px] items-start px-[100px] py-[72px] w-full">
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-[80px] items-start px-5 sm:px-10 lg:px-[100px] py-12 lg:py-[72px] w-full">
                 <div class="flex flex-1 flex-col gap-[20px] items-start">
                     <div class="bg-[#FAFAFA] px-[10px] py-[5px] rounded-[4px]">
                         <span class="font-medium leading-[1.5] text-[#79766e] text-[11px] tracking-wider uppercase">ADVANCED CAPABILITIES · RFQ</span>
                     </div>
-                    <h2 class="font-medium leading-[1.2] text-[#292821] text-[36px] tracking-[-1.1px]">Custom sizes? Large volume? Let's talk.</h2>
+                    <h2 class="font-medium leading-[1.2] text-[#292821] text-[28px] sm:text-[32px] lg:text-[36px] tracking-[-1.1px]">Custom sizes? Large volume? Let's talk.</h2>
                     <p class="font-normal leading-[1.5] text-[#79766e] text-[15px]">
                         Design your material requirements, from cut dimensions to supply schedules. The RFQ form helps our team understand your business needs.
                     </p>
                 </div>
-                <div class="flex flex-col gap-[18px] items-start justify-center shrink-0" style="width: calc((100% - 696px) / 3)">
+                <div class="flex flex-col gap-[18px] items-start justify-center shrink-0 w-full lg:w-[calc((100%-696px)/3)]">
                     <a href="#" class="wood-sign w-full">
                         <span>Create quotation request</span>
                     </a>
-                    <p class="font-normal leading-[1.5] text-[#79766e] text-[12px] whitespace-nowrap">Clear specifications. More focused discussions.</p>
+                    <p class="font-normal leading-[1.5] text-[#79766e] text-[12px] lg:whitespace-nowrap">Clear specifications. More focused discussions.</p>
                 </div>
             </div>
 
             <!-- Business benefits -->
-            <div class="bg-[#FAFAFA] flex items-start gap-[80px] px-[100px] pt-[12px] pb-[8px] w-full">
-                <div class="flex flex-col gap-0 items-start shrink-0 w-[360px]">
-                    <span class="font-semibold leading-[1.4] text-[#a38355] text-[11px] tracking-wider uppercase whitespace-nowrap">BUILT FOR YOUR WORKFLOW</span>
-                    <h2 class="font-medium leading-[1.2] text-[#292821] text-[28px] tracking-[-0.8px] whitespace-nowrap">Not just buying wood.</h2>
+            <div class="bg-[#FAFAFA] flex flex-col lg:flex-row items-start gap-6 lg:gap-[80px] px-5 sm:px-10 lg:px-[100px] pt-[12px] pb-[8px] w-full">
+                <div class="flex flex-col gap-0 items-start shrink-0 w-full lg:w-[360px]">
+                    <span class="font-semibold leading-[1.4] text-[#a38355] text-[11px] tracking-wider uppercase lg:whitespace-nowrap">BUILT FOR YOUR WORKFLOW</span>
+                    <h2 class="font-medium leading-[1.2] text-[#292821] text-[24px] sm:text-[28px] tracking-[-0.8px] lg:whitespace-nowrap">Not just buying wood.</h2>
                 </div>
-                <div class="grid flex-1 grid-cols-3 gap-[28px] items-start">
-                    <div class="flex flex-col gap-[6px] items-start border-l border-[#e7e4dc] pl-[24px]">
+                <div class="grid w-full lg:flex-1 grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-[28px] items-start">
+                    <div class="flex flex-col gap-[6px] items-start border-t sm:border-t-0 sm:border-l border-[#e7e4dc] pt-4 sm:pt-0 sm:pl-[24px]">
                         <div class="flex items-center gap-[8px]">
                             <div class="relative size-[16px] shrink-0">
                                 <img alt="" class="absolute block inset-0 max-w-none size-full brightness-0" src="{{ asset('images/serat/factory.svg') }}" />
@@ -203,7 +203,7 @@
                         </div>
                         <p class="font-normal leading-[1.5] text-[#79766e] text-[13px]">Stock and specifications to support production planning.</p>
                     </div>
-                    <div class="flex flex-col gap-[6px] items-start border-l border-[#e7e4dc] pl-[24px]">
+                    <div class="flex flex-col gap-[6px] items-start border-t sm:border-t-0 sm:border-l border-[#e7e4dc] pt-4 sm:pt-0 sm:pl-[24px]">
                         <div class="flex items-center gap-[8px]">
                             <div class="relative size-[16px] shrink-0">
                                 <img alt="" class="absolute block inset-0 max-w-none size-full brightness-0" src="{{ asset('images/serat/folder-check.svg') }}" />
@@ -212,7 +212,7 @@
                         </div>
                         <p class="font-normal leading-[1.5] text-[#79766e] text-[13px]">Orders, payments, invoices, and certificates in one account.</p>
                     </div>
-                    <div class="flex flex-col gap-[6px] items-start border-l border-[#e7e4dc] pl-[24px]">
+                    <div class="flex flex-col gap-[6px] items-start border-t sm:border-t-0 sm:border-l border-[#e7e4dc] pt-4 sm:pt-0 sm:pl-[24px]">
                         <div class="flex items-center gap-[8px]">
                             <div class="relative size-[16px] shrink-0">
                                 <img alt="" class="absolute block inset-0 max-w-none size-full brightness-0" src="{{ asset('images/serat/chart-no-axes-combined.svg') }}" />
@@ -225,29 +225,29 @@
             </div>
 
             <!-- Newsletter -->
-            <div class="bg-white flex items-center justify-center gap-[64px] px-[72px] py-[64px] w-full">
-                <div class="flex flex-col gap-[16px] items-start max-w-[520px]">
-                    <h2 class="font-semibold leading-[1.2] text-[#292821] text-[32px] tracking-[-0.8px]">Stay ahead with BBHub.</h2>
+            <div class="bg-white flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[64px] px-5 sm:px-10 lg:px-[72px] py-12 lg:py-[64px] w-full">
+                <div class="flex flex-col gap-[16px] items-start max-w-[520px] w-full">
+                    <h2 class="font-semibold leading-[1.2] text-[#292821] text-[26px] sm:text-[32px] tracking-[-0.8px]">Stay ahead with BBHub.</h2>
                     <p class="font-normal leading-[1.6] text-[#79766e] text-[15px]">
                         Get timber price updates, new stock, and shipping news for your business.
                     </p>
-                    <form action="#" method="POST" onsubmit="event.preventDefault()" class="flex flex-wrap gap-[12px] items-center mt-[8px]">
-                        <input type="email" required placeholder="Enter your business email" class="h-[46px] w-[300px] rounded-[8px] border border-[#e7e4dc] bg-white px-[16px] text-[14px] text-[#292821] placeholder:text-[#79766e] focus:outline-none focus:border-[#a38355]" />
-                        <button type="submit" class="h-[46px] rounded-[8px] bg-[#292821] px-[22px] text-[14px] font-medium text-white shadow-md transition-colors hover:bg-[#a38355]">Subscribe Now</button>
+                    <form action="#" method="POST" onsubmit="event.preventDefault()" class="flex w-full flex-wrap gap-[12px] items-center mt-[8px]">
+                        <input type="email" required placeholder="Enter your business email" class="h-[46px] w-full sm:w-[300px] rounded-[8px] border border-[#e7e4dc] bg-white px-[16px] text-[14px] text-[#292821] placeholder:text-[#79766e] focus:outline-none focus:border-[#a38355]" />
+                        <button type="submit" class="h-[46px] w-full sm:w-auto rounded-[8px] bg-[#292821] px-[22px] text-[14px] font-medium text-white shadow-md transition-colors hover:bg-[#a38355]">Subscribe Now</button>
                     </form>
                 </div>
-                <div class="relative w-[420px] h-[280px] shrink-0">
+                <div class="relative w-full max-w-[420px] h-[240px] sm:h-[280px] shrink-0">
                     <div class="absolute inset-0 translate-x-[12px] -translate-y-[14px] rotate-[3deg] rounded-[12px] bg-[#e7e4dc]"></div>
                     <img src="{{ asset('images/timber-planks.jpg') }}" alt="Stacked timber in storage" loading="lazy" decoding="async" class="absolute inset-0 size-full rounded-[12px] object-cover -rotate-[2deg] shadow-lg" />
                 </div>
             </div>
 
             <!-- Footer -->
-            <footer class="bg-[#FAFAFA] flex flex-col gap-[48px] items-start px-[72px] py-[64px] w-full">
+            <footer class="bg-[#FAFAFA] flex flex-col gap-[40px] lg:gap-[48px] items-start px-5 sm:px-10 lg:px-[72px] py-12 lg:py-[64px] w-full">
                 <div class="bg-[#e7e4dc] h-px w-full"></div>
 
-                <div class="flex gap-[90px] items-start w-full">
-                    <div class="flex flex-col gap-[15px] items-start w-[360px] shrink-0">
+                <div class="flex flex-col md:flex-row flex-wrap gap-10 md:gap-[60px] lg:gap-[90px] items-start w-full">
+                    <div class="flex flex-col gap-[15px] items-start w-full md:w-[360px] shrink-0">
                         <div class="flex gap-[9px] items-center">
                             <div class="h-[28px] relative w-[26px]">
                                 <img alt="" class="absolute block inset-0 max-w-none size-full" src="{{ asset('images/serat/tree-deciduous.svg') }}" />
@@ -281,7 +281,7 @@
                     </div>
                 </div>
                 <div class="bg-[#e7e4dc] h-px w-full"></div>
-                <div class="flex font-normal items-start justify-between leading-[1.5] text-[#79766e] text-[12px] w-full">
+                <div class="flex flex-col sm:flex-row font-normal items-start sm:items-center justify-between gap-3 leading-[1.5] text-[#79766e] text-[12px] w-full">
                     <span>© 2026 BBHub · Timber supply, connected.</span>
                     <div class="flex gap-6">
                         <a href="#" class="hover:text-[#292821]">Privacy policy</a>

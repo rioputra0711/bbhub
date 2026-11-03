@@ -45,6 +45,21 @@ const materialItems: CardStackItem[] = [
 ];
 
 export function MaterialCardStack() {
+  const [viewport, setViewport] = React.useState(() =>
+    typeof window === "undefined" ? 1440 : window.innerWidth,
+  );
+
+  React.useEffect(() => {
+    const onResize = () => setViewport(window.innerWidth);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const cardWidth =
+    viewport < 480 ? Math.max(240, viewport - 96) : viewport < 768 ? 340 : viewport < 1024 ? 400 : 480;
+  const cardHeight = viewport < 480 ? 200 : viewport < 768 ? 240 : viewport < 1024 ? 265 : 290;
+
   return (
     <div className="w-full flex justify-center py-2">
       <div className="w-full max-w-5xl">
@@ -57,8 +72,9 @@ export function MaterialCardStack() {
           springDamping={30}
           pauseOnHover={true}
           showDots={true}
-          cardWidth={480}
-          cardHeight={290}
+          cardWidth={cardWidth}
+          cardHeight={cardHeight}
+          maxVisible={viewport < 768 ? 3 : 7}
         />
       </div>
     </div>
